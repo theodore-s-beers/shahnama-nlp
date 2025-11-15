@@ -7,8 +7,10 @@ def main():
 
     with open("hemistichs.txt", "w") as f:
         for line in lines:
-            if "hemistichOne" not in line or "hemistichTwo" not in line:
+            if "hemistichOne" not in line:
                 continue
+
+            assert "hemistichTwo" in line
 
             f.write(line["hemistichOne"] + "\n")
             f.write(line["hemistichTwo"] + "\n")
