@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 
@@ -17,10 +19,12 @@ def main():
     response = requests.get(url, params=params)
     response.raise_for_status()
 
-    with open("lines.json", "w") as f:
-        f.write(response.text)
+    data = response.json()
 
-    print(f"Downloaded {len(response.text)} bytes to lines.json")
+    with open("lines.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+    print(f"Wrote {len(data)} JSON objects to lines.json")
 
 
 if __name__ == "__main__":
